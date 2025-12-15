@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/react@18/umd/react.production.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>    
+
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        const title = 'Danh sách khóa học'
+        const course = [
+            { name: 'HTML, CSS', price: 100000},
+            { name: 'JavaScript', price: 200000},
+            { name: 'React', price: 300000}
+        ]
+
+        const ul = (
+            <ul>
+                {course.map((item, index) => (
+                    <li key={index}>{item.name} - {item.price} VND</li>
+                ))}
+            </ul>
+        )
+        const root = document.getElementById('root')
+        ReactDOM.render(ul, root)
+    </script>
+
+    
+</body>
+</html>

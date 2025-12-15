@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/react@18/umd/react.production.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>    
+
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        function Post(props) {
+            console.log(props);
+            return (
+                <div className="post-item">
+                    <img src={props.image} alt={props.title}/>
+                    <h2 className="post-title">{props.title}</h2>
+                    <p className="post-description">{props.description}</p>
+                </div>
+            );
+        }
+       
+
+        //App.js
+        function App() {
+            return (
+                <div>
+                    <main>
+                        <Post 
+                            image="https://s3-hfx03.fptcloud.com/codelearnstorage/files/thumbnails/thu-vien-chuan-cpp_5dd3fda99ce1421e90b211d414c4a40d.png"
+                            title="Khóa học React"
+                            description="React là thư viện JavaScript phổ biến hiện nay..."
+                        />
+                        <Post 
+                            image="https://s3-hfx03.fptcloud.com/codelearnstorage/files/thumbnails/lam-game-2d-voi-godot_e439ef34b91e4a9fa261e94bda0874c1.jpg"
+                            title="Khóa học JavaScript"
+                            description="JavaScript là ngôn ngữ lập trình web phổ biến..."  
+                        />
+                        <Post 
+                            image="https://s3-hfx03.fptcloud.com/codelearnstorage/files/thumbnails/python-co-ban_b80bca9b238b4615b94541de28af00ae.png"
+                            title="Khóa học HTML, CSS"
+                            description="HTML và CSS là nền tảng của mọi trang web..."
+                        />
+                    </main>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'))
+        root.render(<App />);
+    </script>
+
+    
+</body>
+</html>
