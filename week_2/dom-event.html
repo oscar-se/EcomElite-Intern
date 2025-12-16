@@ -11,6 +11,20 @@
   <body>
     <div id="root"></div>
     <script type="text/babel">
+      // //App.js
+      // function App() {
+      //     return (
+      //         <div>
+      //             <main>
+      //                 <button onClick={() => alert('Clicked!')}>Click me</button>
+      //             </main>
+      //         </div>
+      //     );
+      // }
+
+      // const root = ReactDOM.createRoot(document.getElementById('root'))
+      // root.render(<App />);
+
       //Course.js
       const course = [
         {
@@ -106,30 +120,37 @@
         },
       ];
 
-      function CourseItem(props) {
-        console.log(props);
+      //DomEvent click course title
+      function CourseItem({ data, onClick }) {
         return (
           <div className="post-item">
-            <img src={props.image} alt={props.title} />
-            <h2 className="post-title">{props.title}</h2>
-            <p className="post-description">{props.description}</p>
-            <p className="post-duration">Duration: {props.duration} seconds</p>
+            <img src={data.image_url} alt={data.title} />
+            <h2
+              style={{ cursor: "pointer" }}
+              className="post-title"
+              onClick={() => onClick(data)}
+            >
+              {data.title}
+            </h2>
+            <p className="post-description">{data.description}</p>
+            <p className="post-duration">Duration: {data.duration} seconds</p>
           </div>
         );
       }
 
       //App.js
       function App() {
+        const handleClick = (title) => {
+          alert(title);
+        };
         return (
           <div>
             <main>
               {course.map((item) => (
                 <CourseItem
                   key={item.id}
-                  image={item.image_url}
-                  title={item.title}
-                  description={item.description}
-                  duration={item.duration}
+                  data = {item}
+                  onClick={handleClick}
                 />
               ))}
             </main>
