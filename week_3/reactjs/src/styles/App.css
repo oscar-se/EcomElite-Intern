@@ -1,0 +1,22 @@
+.App {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+.user-list {
+  display: flex;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.user-item {
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 200px;
+  text-align: center;
+}
+
+.user-item img {
+  width: 80px;
+  border-radius: 50%;
+}
