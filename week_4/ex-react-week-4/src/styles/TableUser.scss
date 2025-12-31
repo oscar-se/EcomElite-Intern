@@ -1,0 +1,155 @@
+.sort-header {
+  i {
+    cursor: pointer;
+
+    &:hover {
+      color: #4299e1;
+    }
+  }
+}
+
+.search-box {
+  margin-right: auto;
+  margin-left: 0;
+}
+
+// ReactPaginate Styles
+.pagination {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+
+  .page-item {
+    .page-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 40px;
+      height: 40px;
+      padding: 0.5rem 0.75rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 10px;
+      color: #667eea;
+      font-weight: 600;
+      background: #ffffff;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      text-decoration: none;
+      user-select: none;
+
+      &:hover {
+        background: #667eea;
+        color: #ffffff;
+        border-color: #667eea;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+      }
+
+      &:active {
+        transform: translateY(-1px);
+      }
+    }
+
+    &.active {
+      .page-link {
+        background: #667eea;
+        color: #ffffff;
+        border-color: #667eea;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        transform: scale(1.1);
+        font-weight: 700;
+
+        &:hover {
+          transform: scale(1.1) translateY(-3px);
+        }
+      }
+    }
+
+    &.disabled {
+      .page-link {
+        opacity: 0.4;
+        cursor: not-allowed;
+        pointer-events: none;
+        background: #f7fafc;
+        color: #a0aec0;
+        border-color: #e2e8f0;
+      }
+    }
+
+    &.previous,
+    &.next {
+      .page-link {
+        font-size: 1.2rem;
+        font-weight: 700;
+        min-width: 45px;
+        height: 45px;
+        background: #667eea;
+        color: #ffffff;
+        border-color: #667eea;
+
+        &:hover {
+          background: #764ba2;
+          transform: translateY(-3px) scale(1.05);
+          box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+        }
+      }
+    }
+
+    &.break {
+      .page-link {
+        border: none;
+        background: transparent;
+        color: #a0aec0;
+        cursor: default;
+        pointer-events: none;
+
+        &:hover {
+          background: transparent;
+          transform: none;
+          box-shadow: none;
+        }
+      }
+    }
+  }
+}
+
+// Pagination Container Enhancement
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem 0;
+  background: #f8f9fa;
+  border-radius: 12px;
+  margin-top: 2rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .pagination {
+    gap: 0.3rem;
+    margin: 1.5rem 0;
+
+    .page-item {
+      .page-link {
+        min-width: 35px;
+        height: 35px;
+        padding: 0.4rem 0.6rem;
+        font-size: 0.875rem;
+      }
+
+      &.previous,
+      &.next {
+        .page-link {
+          min-width: 40px;
+          height: 40px;
+        }
+      }
+    }
+  }
+}

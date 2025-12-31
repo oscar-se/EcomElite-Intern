@@ -1,35 +1,37 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
-function ModalAddNew(props) {
-  const { show, handleClose, updateTable, createUser } = props;
+function ModalEditUser(props) {
+  const { show, handleClose, dataUserEdit, updateUser, handleEditUserFromTable } = props;
   const [name, setName] = useState("");
   const [job, setJob] = useState("");
 
-  const handleSaveUser = async () => {
+  const handleEditUser = async () => {
     try {
-      const response = await createUser(name, job);
-      handleClose();
-      setName("");
-      setJob("");
-      updateTable({ 
-        id: response.id, 
-        first_name: name, 
-        last_name: "", 
-        email: name + "@example.com"});
-      toast.success("User added successfully!");
+        await updateUser(dataUserEdit.id, name, job);
+        handleEditUserFromTable({ 
+          id: dataUserEdit.id, 
+          first_name: name,
+        });
+        handleClose();
+        toast.success("User updated successfully!");
     } catch (error) {
-      toast.error("Failed to add user.");
+      toast.error("Failed to update user.");
     }
   };
 
-
+  useEffect(() => {
+    if (dataUserEdit && show) {
+      setName(dataUserEdit.first_name || "");
+      setJob(dataUserEdit.job || "");
+    }
+  }, [dataUserEdit, show]);
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Add New User</Modal.Title>
+        <Modal.Title>Edit User</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <div>
@@ -55,11 +57,11 @@ function ModalAddNew(props) {
         <Button variant="danger" onClick={handleClose}>
           Close
         </Button>
-        <Button variant="success" onClick={handleSaveUser}>
-          Add
+        <Button variant="info" onClick={handleEditUser}>
+          Save
         </Button>
       </Modal.Footer>
     </Modal>
   );
 }
-export default ModalAddNew;
+export default ModalEditUser;
