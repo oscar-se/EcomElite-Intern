@@ -51,7 +51,7 @@
   }
   
   .dropdown-menu {
-    background: linear-gradient(145deg, #ffffff, #f8f9fa);
+    background: #ffffff;
     border: none;
     border-radius: 12px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
@@ -59,19 +59,19 @@
     
     .dropdown-item {
       color: #2d3748;
-      padding: 0.75rem 1.5rem;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
       transition: all 0.2s ease;
       border-radius: 8px;
-      margin: 0.25rem 0.5rem;
       
       &:hover {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: #ffffff;
-        transform: translateX(5px);
+        background: #fff;
+        color: #000;
+        transform: translateY(-2px);
       }
       
       &:active {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: #e2e8f0;
         color: #ffffff;
       }
     }
@@ -87,6 +87,13 @@
       color: rgba(255, 255, 255, 0.9);
     }
   }
+}
+
+.logo {
+  height: 40px;
+  width: 40px;
+  margin-right: 10px;
+  vertical-align: middle;
 }
 
 // Responsive adjustments

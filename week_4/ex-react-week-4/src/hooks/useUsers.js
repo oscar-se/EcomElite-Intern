@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { debounce } from "lodash";
 import { fetchAllUsers } from "../services/UserService";
+import { fetchUserById } from "../services/UserService";
 import { createNewUser } from "../services/UserService";
 import { editUser } from "../services/UserService";
 import { deleteUser } from "../services/UserService";
@@ -21,7 +22,11 @@ function useUsers(initialPage = 1) {
   const [keyword, setKeyword] = useState("");
 
   const updateTable = (user) => {
-    setUsers([user, ...users]);
+    setUsers((prevUsers) => [user, ...prevUsers]);
+  };
+
+  const importUsers = (importedUsers) => {
+    setUsers((prevUsers) => [...importedUsers, ...prevUsers]);
   };
 
   const setUserEdit = (user) => {
@@ -60,8 +65,6 @@ function useUsers(initialPage = 1) {
     }
   }, 300);
 
-
-
   const onSortUsersFirstName = () => {
     const sortedUsers = [...users].sort((a, b) => {
       if (sortOrder === "asc") {
@@ -72,7 +75,7 @@ function useUsers(initialPage = 1) {
     });
     setUsers(sortedUsers);
     setSortOrder(sortOrder === "asc" ? "desc" : "asc");
-  }
+  };
 
   const getUsers = async (page) => {
     try {
@@ -86,6 +89,19 @@ function useUsers(initialPage = 1) {
       }
     } catch (error) {
       setError(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const getUserById = async (id) => {
+    try {
+      setLoading(true);
+      const response = await fetchUserById(id);
+      return response;
+    } catch (error) {
+      setError(error);
+      throw error;
     } finally {
       setLoading(false);
     }
@@ -145,13 +161,16 @@ function useUsers(initialPage = 1) {
     dataUserEdit,
     setUserEdit,
     updateTable,
+    importUsers,
     handleEditUserFromTable,
     getUsers,
+    getUserById,
     createUser,
     updateUser,
     deleteUserById,
     onSortUsersById,
     onSortUsersFirstName,
+    keyword,
     handleSearch,
   };
 }
