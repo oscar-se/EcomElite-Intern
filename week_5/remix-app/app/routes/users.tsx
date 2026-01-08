@@ -1,5 +1,6 @@
 import { Form, useLoaderData } from "react-router";
 import { getUsers, createUser } from "../services/user.server";
+import UserList from "../components/UserList";
 
 export async function loader() {
   return getUsers();
@@ -37,11 +38,7 @@ export default function Users() {
         <button>Add User</button>
       </Form>
 
-      <ul>
-        {users.map((u) => (
-          <li key={u.id}>{u.name} - {u.phone}</li>
-        ))}
-      </ul>
+      <UserList users={users} />
     </>
   );
 }
